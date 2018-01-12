@@ -1,13 +1,13 @@
-# Getting Started
+# Financial Default Prediction
 
-Welcome to your new Azure Machine Learning Project.
+This project uses Azure Machine Learning Workbench. Scikit-Learn, and Keras to perform sequence classification on financial transaction data, to predict whether someone is likely to default or not.  
 
-For more information go to <http://aka.ms/AzureMLGettingStarted>
+This binary classification task is implemented in multiple ways:
 
-Configure your favorite IDE and open this project using the **File menu**.
+1. Support Vector Machine
+2. LSTM (Long Short-Term Memory)
+3. Convolutional Neural Network
 
-Add and prepare data sources using the **Data** tab.
+The script `preprocess.py` takes the input data and builds a 3D matrix to feed into the LSTM network of shape (samples, timesteps, features). 
 
-Add and explore notebooks using the **Notebook** tab.
-
-Explore past runs and access project outputs using the **Run History** tab.
+On our dataset, the CNN implementation achieved the highest accuracy. 
