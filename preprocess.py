@@ -1,10 +1,12 @@
+# this file is written to parse a specific dataset to construct an LSTM input layer and deserialize the data
+# your resulting data structure should be a 3D matrix of [samples, time steps, features]
+
 import pandas as pd
 import numpy as np
 import sys
 
 # read data
 prepivot = pd.read_csv('data/prepivot_weekly.csv')
-print(prepivot.head())
 
 # read category lookup into dictionary
 categories = {}
@@ -12,7 +14,6 @@ with open("data/categories.txt") as f:
     for line in f:
        (key, val) = line.split()
        categories[key] = val
-print(categories)
 
 # construct input layer data
 data = np.zeros((199, 153, 37))
@@ -24,12 +25,10 @@ for index, row in prepivot.iterrows():
     if index == 0:
         previousID = row['LinkID']
         labels[0] = row['Goal']
-        #print('Index: {}, Sample: {}, Member: {}'.format(index, sample, previousID))
     memberID = row['LinkID']
     if memberID != previousID:
         sample = sample + 1
         labels[sample] = row['Goal']
-        #print('Index: {}, Sample: {}, Member: {}'.format(index, sample, memberID))
     timeStep = int(row['TimeStep']) - 1
     feature = int(categories[row['Category']])
     

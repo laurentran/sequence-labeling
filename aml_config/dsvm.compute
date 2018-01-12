@@ -1,0 +1,8 @@
+address: dsvm12.westus2.cloudapp.azure.com
+#baseDockerImage: microsoft/mmlspark:plus-0.9.9
+baseDockerImage: microsoft/mmlspark:plus-gpu-0.9.9
+#nativeSharedDirectory: ~/.azureml/share/
+password: AzureMlSecret=dsvm#latra#6b8c55c42224481696cab5eb5067d1ee
+#sharedVolumes: true
+type: remotedocker
+username: latra
