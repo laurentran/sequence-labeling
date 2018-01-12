@@ -33,7 +33,7 @@ test_Y = Y[70:129,:]
 
 # build LSTM layers
 model = Sequential()
-model.add(LSTM(100,input_shape=(time_steps, features)))
+model.add(LSTM(100, dropout=0.2, input_shape=(time_steps, features)))
 model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 print(model.summary())
