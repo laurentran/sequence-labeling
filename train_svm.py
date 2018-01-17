@@ -13,13 +13,12 @@ from sklearn.metrics import precision_recall_curve, roc_curve, auc
 from azureml.logging import get_azureml_logger
 from azureml.dataprep.package import run
 
-from plot_graphs import plot_iris
-
 run_logger = get_azureml_logger()
 
 os.makedirs('./outputs', exist_ok=True)
 
 # read dataset as dataframe
+print('-------Training model-------')
 data = run('Weekly.dprep', dataflow_idx=0, spark=False)
 print('Dataset shape: {}'.format(data.shape))
 
@@ -50,12 +49,6 @@ run_logger.log("Validation accuracy", test_acc)
 
 # evaluate metrics
 predict_Y = clf.predict_proba(test_X)
-# precision, recall, thresholds = precision_recall_curve(test_Y, predict_Y[:,1])#, pos_label='1')
-
-# run_logger.log("Precision", precision)
-# run_logger.log("Recall", recall)
-# run_logger.log("Thresholds", thresholds)
-
 fpr, tpr, thresholds2 = roc_curve(test_Y, predict_Y[:,1], pos_label=0)
 
 roc_auc = auc(fpr, tpr)
@@ -70,7 +63,7 @@ plt.xlim([-0.1,1.1])
 plt.ylim([-0.1,1.1])
 plt.ylabel('True Positive Rate')
 plt.xlabel('False Positive Rate')
-#plt.show()
+plt.show()
 fig.savefig("./outputs/roc.png", bbox_inches='tight')
 
 
