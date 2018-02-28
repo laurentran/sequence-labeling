@@ -5,4 +5,4 @@ baseDockerImage: microsoft/mmlspark:plus-gpu-0.9.9
 password: [AzureML Secret here]
 #sharedVolumes: true
 type: remotedocker
-username: latra
+username: [username]
